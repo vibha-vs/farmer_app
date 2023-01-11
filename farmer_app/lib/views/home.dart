@@ -51,10 +51,10 @@ class _HomeState extends State<Home> {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const <Widget>[
-              Text(
-                "Flutter",
-                style: TextStyle(color: Colors.white),
-              ),
+              // Text(
+              //   "Flutter",
+              //   style: TextStyle(color: Colors.white),
+              // ),
               Text(
                 "News",
                 style: TextStyle(color: Colors.white),
@@ -71,21 +71,21 @@ class _HomeState extends State<Home> {
               physics: const ClampingScrollPhysics(),
               child: Column(children: <Widget>[
                 //categories
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  height: 70,
-                  child: ListView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemCount: categories.length,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return CategoryTile(
-                          imageUrl: categories[index].imageUrl,
-                          categoryName: categories[index].categoryName,
-                        );
-                      }),
-                ),
+                // Container(
+                //   padding: const EdgeInsets.symmetric(horizontal: 16),
+                //   height: 70,
+                //   child: ListView.builder(
+                //       physics: const NeverScrollableScrollPhysics(),
+                //       itemCount: categories.length,
+                //       shrinkWrap: true,
+                //       scrollDirection: Axis.horizontal,
+                //       itemBuilder: (context, index) {
+                //         return CategoryTile(
+                //           imageUrl: categories[index].imageUrl,
+                //           categoryName: categories[index].categoryName,
+                //         );
+                //       }),
+                // ),
 
                 //blogs
                 ListView.builder(
@@ -160,8 +160,32 @@ class BlogTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[Image.network(imageUrl), Text(title), Text(desc)],
+    return Padding(
+      padding: const EdgeInsets.only(left: 15, right: 15, top: 10),
+      child: Container(
+        margin: EdgeInsets.only(bottom: 12),
+        child: Column(
+          children: <Widget>[
+            ClipRRect(
+                borderRadius: BorderRadius.circular(6),
+                child: Image.network(imageUrl)),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              title,
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            Text(
+              desc,
+              style: TextStyle(color: Colors.black54),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

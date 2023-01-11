@@ -83,9 +83,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 textColor: Colors.white,
                 onPressed: () async {
                   try {
-                    await FirebaseAuthService().signup(
-                        _emailController.text.trim(),
-                        _passwordController.text.trim());
+                    // await FirebaseAuthService().signup(
+                    //     _emailController.text.trim(),
+                    //     _passwordController.text.trim());
 
                     if (!mounted) return;
 

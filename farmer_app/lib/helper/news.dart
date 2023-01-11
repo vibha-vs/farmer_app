@@ -9,7 +9,7 @@ class News {
   Future<void> getNews() async {
     try {
       var url =
-          "https://newsapi.org/v2/everything?q=agriculture&apiKey=94bfe6dbb16e42f79ed369910f41842e";
+          "https://newsapi.org/v2/everything?apiKey=94bfe6dbb16e42f79ed369910f41842e&q=agriculture AND farmer AND India";
       var response = await http.get(Uri.parse(url));
       var jsonData = jsonDecode(response.body);
       print("Inside try");

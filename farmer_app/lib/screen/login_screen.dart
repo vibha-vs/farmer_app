@@ -97,9 +97,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   // this try catch or add that code in catch block.
 
                   try {
-                    await FirebaseAuthService().login(
-                        _emailController.text.trim(),
-                        _passwordController.text.trim());
+                    // await FirebaseAuthService().login(
+                    //     _emailController.text.trim(),
+                    //     _passwordController.text.trim());
                     if (FirebaseAuth.instance.currentUser != null) {
                       if (!mounted) return;
                       Navigator.push(
@@ -206,7 +206,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           // color: Colors.blue,
                         ),
                         onPressed: () async {
-                          await FirebaseAuthService().logininwithgoogle();
+                          //await FirebaseAuthService().logininwithgoogle();
 
                           if (FirebaseAuth.instance.currentUser != null) {
                             if (!mounted) return;
