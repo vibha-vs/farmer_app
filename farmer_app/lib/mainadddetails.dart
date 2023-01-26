@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import '/user.dart';
 import 'mainsmartconnect.dart';
+import 'widgets/navigation_drawer_widget.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,9 +19,16 @@ class MyDetails extends StatelessWidget {
     return MaterialApp(
       title: appTitle,
       home: Scaffold(
+        drawer: NavigationDrawerWidget(),
         appBar: AppBar(
           backgroundColor: Colors.green,
-          title: Text(appTitle),
+          title: Padding(
+            padding: const EdgeInsets.fromLTRB(65, 10, 10, 8),
+            child: Text(
+              appTitle,
+              style: TextStyle(fontSize: 23),
+            ),
+          ),
         ),
         body: MyCustomForm(),
       ),
@@ -60,7 +68,7 @@ class MyCustomFormState extends State<MyCustomForm> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            SizedBox(height: 35),
+            SizedBox(height: 25),
             Padding(
               padding: EdgeInsets.fromLTRB(15, 15, 20, 10),
               child: TextFormField(

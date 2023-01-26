@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
+import 'package:farmer_app/widgets/navigation_drawer_widget.dart';
 import 'package:flutter/material.dart';
 import '../models/article_model.dart';
 import '../models/categorie_model.dart';
@@ -47,17 +48,21 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavigationDrawerWidget(),
       appBar: AppBar(
           title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            //mainAxisAlignment: MainAxisAlignment.center,
             children: const <Widget>[
               // Text(
               //   "Flutter",
               //   style: TextStyle(color: Colors.white),
               // ),
-              Text(
-                "News",
-                style: TextStyle(color: Colors.white),
+              Padding(
+                padding: EdgeInsets.fromLTRB(95, 10, 50, 10),
+                child: Text(
+                  "News",
+                  style: TextStyle(color: Colors.white),
+                ),
               )
             ],
           ),
@@ -182,7 +187,8 @@ class BlogTile extends StatelessWidget {
             Text(
               desc,
               style: TextStyle(color: Colors.black54),
-            )
+            ),
+            Divider(),
           ],
         ),
       ),

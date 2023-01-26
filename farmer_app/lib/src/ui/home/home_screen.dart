@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
+import '../../../widgets/navigation_drawer_widget.dart';
 import '/src/model/current_weather_data.dart';
 import '/src/model/five_days_data.dart';
 import '/src/ui/home/home_controller.dart';

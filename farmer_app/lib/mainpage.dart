@@ -1,4 +1,9 @@
+//import 'dart:html';
+
+import 'dart:ui';
+
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:farmer_app/mainadddetails.dart';
 import 'package:farmer_app/mainsmartconnect.dart';
 import 'package:farmer_app/src/model/weather.dart';
 import 'package:farmer_app/src/ui/home/home_screen.dart';
@@ -8,6 +13,7 @@ import '/mainnews.dart';
 import 'mainsmartconnect.dart';
 import '/screen/welcome_screen.dart';
 import './carousel.dart';
+import 'miniweather.dart';
 import 'screens/sign_in_screen.dart';
 import "./firebase_options.dart";
 import 'mainweather.dart';
@@ -15,6 +21,7 @@ import 'package:curved_labeled_navigation_bar/curved_navigation_bar.dart';
 import 'package:curved_labeled_navigation_bar/curved_navigation_bar_item.dart';
 import '/widgets/button_widget.dart';
 import '/widgets/navigation_drawer_widget.dart';
+import 'mainadddetails.dart';
 
 void main() async {
   //WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +35,8 @@ class MyHome extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: new ThemeData(scaffoldBackgroundColor: Colors.green),
       home: MyHomePage(),
     );
   }
@@ -67,7 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: NavigationDrawerWidget(),
       appBar: AppBar(
         title: Padding(
-          padding: const EdgeInsets.only(top: 20),
+          padding: const EdgeInsets.only(top: 10),
           child: const Text(
             //'ಅನ್ನದಾತ',
             'ANNADAATA',
@@ -92,169 +100,206 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       // backgroundColor: Colors.white,
-      body:
-          //Stack(
-          //children: [
+      body: Column(
+        children: [
           Container(
-        constraints: const BoxConstraints.expand(),
-        decoration: const BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage("assets/images/farm.jpg"), fit: BoxFit.cover),
+            //color: Colors.green,
+            child: MyCard1(),
+
+            // constraints: const BoxConstraints.expand(),
+            // decoration: const BoxDecoration(
+            //   image: DecorationImage(
+            //       image: AssetImage("assets/images/farm.jpg"),
+            //       fit: BoxFit.cover),
+            // ),
+            //child: MiniWeather(),
+          ),
+          Container(
+            //color: Colors.green,
+            child: MyCard2(),
+          ),
+          Container(
+            //color: Colors.green,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(35, 10, 20, 30),
+              child: Text(
+                '"The Farmer has always been the backbone of our country and will continue to be so..."',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontStyle: FontStyle.italic),
+              ),
+            ),
+          ),
+          Container(
+            //color: Colors.green,
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(150, 5, 5, 30),
+              child: Text(
+                '- Mahatma Gandhi',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontStyle: FontStyle.italic),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class MyCard1 extends StatelessWidget {
+//MyCard({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(8, 100, 8, 10),
+        child: Container(
+          width: 370,
+          height: 200,
+          padding: new EdgeInsets.only(top: 20),
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            color: Colors.white,
+            elevation: 25,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const ListTile(
+                    //leading: Icon(Icons.album, size: 60),
+
+                    title: Text('Join Our Community',
+                        style: TextStyle(
+                            fontSize: 30.0, fontStyle: FontStyle.italic)),
+                    subtitle: Text('Add your Crop details here.',
+                        style: TextStyle(fontSize: 18.0)),
+                  ),
+                ),
+                ButtonBar(
+                  //buttonPadding: EdgeInsets.all(8),
+                  children: <Widget>[
+                    FloatingActionButton(
+                      onPressed: () async {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyDetails()));
+                      },
+                      child: const Icon(Icons.add),
+                      backgroundColor: Color.fromARGB(255, 36, 122, 39),
+                    ),
+                    // ElevatedButton(
+                    //   child: const Text('Play'),
+                    //   onPressed: () {/* ... */},
+                    // ),
+                    // ElevatedButton(
+                    //   child: const Text('Pause'),
+                    //   onPressed: () {/* ... */},
+                    // ),
+                  ],
+                ),
+              ],
+            ),
+          ),
         ),
       ),
-      // const Positioned(
-      //   child: Image(
-      //     image: AssetImage("assets/images/Diagram.png"),
-      //   ),
-      // ),
-      //],
     );
-    // body: Builder(
-    //   builder: (context) => Container(
-    //     alignment: Alignment.center,
-    //     padding: EdgeInsets.symmetric(horizontal: 32),
-    //     child: ButtonWidget(
-    //       icon: Icons.open_in_new,
-    //       text: 'Open Drawer',
-    //       onClicked: () {
-    //         Scaffold.of(context).openDrawer();
-    //         // Scaffold.of(context).openEndDrawer();
-    //       },
-    //     ),
-    //   ),
-    // ),
-    // body: Stack(
-    //   children: [
-    //     Positioned(
-    //       bottom: 0,
-    //       left: 0,
-    //       child: SizedBox(
-    //         width: size.width,
-    //         height: 80,
-    //         child: Stack(
-    //           children: [
-    //             CustomPaint(
-    //               size: Size(size.width, 80),
-    //               painter: BNBCustomPainter(),
-    //             ),
-    //             Center(
-    //               heightFactor: 0.6,
-    //               child: FloatingActionButton(
-    //                 onPressed: () {},
-    //                 backgroundColor: const Color.fromARGB(255, 35, 216, 41),
-    //                 elevation: 0.1,
-    //                 child: const Icon(Icons.home),
-    //               ),
-    //             ),
-    //             SizedBox(
-    //               width: size.width,
-    //               height: 80,
-    //               child: Row(
-    //                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    //                 children: [
-    //                   IconButton(
-    //                     onPressed: () {
-    //                       Navigator.push(
-    //                           context,
-    //                           MaterialPageRoute(
-    //                               builder: (context) => MyWeather()));
-    //                     },
-    //                     icon: const Icon(Icons.cloud),
-    //                   ),
-    //                   IconButton(
-    //                     onPressed: () async {
-    //                       Navigator.push(
-    //                           context,
-    //                           MaterialPageRoute(
-    //                               builder: (context) => MyNews()));
-    //                     },
-    //                     icon: const Icon(Icons.newspaper_sharp),
-    //                   ),
-    //                   Container(
-    //                     width: size.width * 0.20,
-    //                   ),
-    //                   IconButton(
-    //                     onPressed: () {},
-    //                     icon: const Icon(Icons.home),
-    //                   ),
-    //                   // ignore: prefer_const_constructors
-    //                   IconButton(
-    //                     onPressed: () async {
-    //                       Navigator.push(
-    //                           context,
-    //                           MaterialPageRoute(
-    //                               builder: (context) => MyConnect()));
-    //                     },
-    //                     icon: const Icon(Icons.account_circle_sharp),
-    //                   ),
-    //                 ],
-    //               ),
-    //             )
-    //           ],
-    //         ),
-    //       ),
-    //     ),
-    //     CarouselWithDotsPage(imgList: imgList),
-
-    // bottomNavigationBar: CurvedNavigationBar(
-    //   backgroundColor: Colors.greenAccent,
-    //   items: [
-    //     CurvedNavigationBarItem(
-    //       child: Icon(Icons.home_outlined),
-    //       label: 'Home',
-    //     ),
-    //     CurvedNavigationBarItem(
-    //       child: Icon(Icons.connect_without_contact_outlined),
-    //       label: 'Connect',
-    //     ),
-    //     CurvedNavigationBarItem(
-    //       child: Icon(Icons.chat_bubble_outline),
-    //       label: 'Chat',
-    //     ),
-    //     CurvedNavigationBarItem(
-    //       child: Icon(Icons.newspaper),
-    //       label: 'Feed',
-    //     ),
-    //     CurvedNavigationBarItem(
-    //       child: Icon(Icons.cloud_outlined),
-    //       label: 'Weather',
-    //     ),
-    //   ],
-    //   onTap: (index) {
-    //     setState(() {
-    //       activeIndex = index;
-    //     });
-    //   },
-    // ),
-    // body: pages.elementAt(activeIndex),
+    // Divider(),
   }
 }
 
-class BNBCustomPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    Paint paint = Paint()
-      ..color = const Color.fromARGB(255, 35, 216, 41)
-      ..style = PaintingStyle.fill;
-    Path path = Path()..moveTo(0, 20);
-    path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);
-    path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 20);
-    path.arcToPoint(
-      Offset(size.width * 0.60, 20),
-      radius: const Radius.circular(10.0),
-      clockwise: false,
-    );
-    path.quadraticBezierTo(size.width * 0.60, 0, size.width * 0.65, 0);
-    path.quadraticBezierTo(size.width * 0.80, 0, size.width, 20);
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
-    path.close();
-    canvas.drawShadow(path, Colors.green, 5, true);
-    canvas.drawPath(path, paint);
-  }
+class MyCard2 extends StatelessWidget {
+//MyCard({Key key}) : super(key: key);
 
   @override
-  bool shouldRepaint(CustomPainter oldDelegate) {
-    return false;
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(8, 5, 8, 30),
+        child: Container(
+          width: 370,
+          height: 240,
+          padding: new EdgeInsets.only(top: 20),
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0),
+            ),
+            color: Colors.white,
+            elevation: 25,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: const ListTile(
+                    //leading: Icon(Icons.album, size: 60),
+
+                    title: Text('Connect with other Farmers like you!',
+                        style: TextStyle(
+                            fontSize: 30.0, fontStyle: FontStyle.italic)),
+                    subtitle: Text('Click here to SmartConnect',
+                        style: TextStyle(fontSize: 18.0)),
+                  ),
+                ),
+                ButtonBar(
+                  //buttonPadding: EdgeInsets.all(8),
+                  children: <Widget>[
+                    FloatingActionButton(
+                      onPressed: () async {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MyConnect()));
+                      },
+                      child: const Icon(Icons.send),
+                      backgroundColor: Color.fromARGB(255, 36, 122, 39),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
+
+
+
+// class BNBCustomPainter extends CustomPainter {
+//   @override
+//   void paint(Canvas canvas, Size size) {
+//     Paint paint = Paint()
+//       ..color = const Color.fromARGB(255, 35, 216, 41)
+//       ..style = PaintingStyle.fill;
+//     Path path = Path()..moveTo(0, 20);
+//     path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);
+//     path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 20);
+//     path.arcToPoint(
+//       Offset(size.width * 0.60, 20),
+//       radius: const Radius.circular(10.0),
+//       clockwise: false,
+//     );
+//     path.quadraticBezierTo(size.width * 0.60, 0, size.width * 0.65, 0);
+//     path.quadraticBezierTo(size.width * 0.80, 0, size.width, 20);
+//     path.lineTo(size.width, size.height);
+//     path.lineTo(0, size.height);
+//     path.close();
+//     canvas.drawShadow(path, Colors.green, 5, true);
+//     canvas.drawPath(path, paint);
+//   }
+
+//   @override
+//   bool shouldRepaint(CustomPainter oldDelegate) {
+//     return false;
+//   }
+// }

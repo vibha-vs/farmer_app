@@ -1,5 +1,6 @@
 import 'package:farmer_app/mainadddetails.dart';
 import 'package:farmer_app/mainnews.dart';
+import 'package:farmer_app/mainpage.dart';
 import 'package:farmer_app/mainsmartconnect.dart';
 import 'package:farmer_app/mainweather.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -48,7 +49,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
 
     return Drawer(
       child: Material(
-        color: Colors.lightGreen,
+        color: Colors.white,
         child: ListView(
           children: <Widget>[
             //buildHeader(
@@ -78,7 +79,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                       style: TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Color.fromARGB(255, 41, 98, 43),
                       ),
                     ),
                   ),
@@ -86,15 +87,22 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   const SizedBox(height: 40),
                   buildSearchField(),
                   const SizedBox(height: 35),
+
+                  buildMenuItem(
+                    text: 'Home Page',
+                    icon: Icons.home,
+                    onClicked: () => selectedItem(context, 4),
+                  ),
+                  const SizedBox(height: 20),
                   buildMenuItem(
                     text: 'Smart Connect',
-                    icon: Icons.connect_without_contact_outlined,
+                    icon: Icons.connect_without_contact,
                     onClicked: () => selectedItem(context, 0),
                   ),
                   const SizedBox(height: 20),
                   buildMenuItem(
                     text: 'Add Crop Details',
-                    icon: Icons.eco_outlined,
+                    icon: Icons.eco_sharp,
                     onClicked: () => selectedItem(context, 1),
                   ),
                   const SizedBox(height: 20),
@@ -106,10 +114,11 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
                   const SizedBox(height: 20),
                   buildMenuItem(
                     text: 'Agriculture News',
-                    icon: Icons.feed_outlined,
+                    icon: Icons.feed,
                     onClicked: () => selectedItem(context, 3),
                   ),
-                  const SizedBox(height: 200),
+
+                  const SizedBox(height: 120),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green.shade800,
@@ -199,7 +208,7 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
         hintStyle: TextStyle(color: color),
         prefixIcon: Icon(Icons.search, color: color),
         filled: true,
-        fillColor: Colors.white12,
+        fillColor: Colors.green,
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(5),
           borderSide: BorderSide(color: color.withOpacity(0.7)),
@@ -217,8 +226,8 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
     required IconData icon,
     VoidCallback? onClicked,
   }) {
-    final color = Colors.white;
-    final hoverColor = Colors.white70;
+    final color = Color.fromARGB(255, 47, 109, 49);
+    final hoverColor = Colors.green;
 
     return ListTile(
       leading: Icon(icon, color: color),
@@ -250,6 +259,11 @@ class _NavigationDrawerWidgetState extends State<NavigationDrawerWidget> {
       case 3:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => MyNews(),
+        ));
+        break;
+      case 4:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => MyHome(),
         ));
         break;
     }

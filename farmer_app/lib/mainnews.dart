@@ -13,7 +13,7 @@ class MyNews extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        appBarTheme: const AppBarTheme(backgroundColor: Color(0xFF151026)),
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.green),
       ),
       home: const Home(),
     );

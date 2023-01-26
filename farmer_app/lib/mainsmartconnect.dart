@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'mainadddetails.dart';
+import 'widgets/navigation_drawer_widget.dart';
 
 void main() async {
   //WidgetsFlutterBinding.ensureInitialized();
@@ -37,12 +38,13 @@ class _MyFetchState extends State<MyFetch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: NavigationDrawerWidget(),
       appBar: AppBar(
         title: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 10, 0, 10),
+          padding: const EdgeInsets.fromLTRB(50, 10, 0, 10),
           child: Text(
             'Smart Connect',
-            style: TextStyle(fontSize: 20),
+            style: TextStyle(fontSize: 23),
           ),
         ),
         backgroundColor: Colors.green,

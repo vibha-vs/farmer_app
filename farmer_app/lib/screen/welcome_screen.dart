@@ -13,15 +13,23 @@ class WelcomeScreen extends StatelessWidget {
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         decoration: const BoxDecoration(
-            image: DecorationImage(image: AssetImage("assets/background.png"))),
+            image: DecorationImage(
+                image: AssetImage("assets/images/background.png"))),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             const SizedBox(
-              height: 130,
-              width: 180,
-              child: Image(
-                  image: AssetImage("assets/logo.png"), fit: BoxFit.cover),
+              height: 90,
+              width: 280,
+              // child: Image(
+              //     image: AssetImage("assets/images/logo.png"),
+              //     fit: BoxFit.cover),
+              child: Text(
+                'ANNADAATA',
+                style: TextStyle(
+                  fontSize: 40,
+                ),
+              ),
             ),
             const SizedBox(height: 40),
             CustomizedButton(
@@ -43,13 +51,13 @@ class WelcomeScreen extends StatelessWidget {
               },
             ),
             const SizedBox(height: 20),
-            const Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                "Continue as a Guest",
-                style: TextStyle(color: Color(0xff35C2C1), fontSize: 25),
-              ),
-            )
+            // const Padding(
+            //   padding: EdgeInsets.all(10.0),
+            //   child: Text(
+            //     "Continue as a Guest",
+            //     style: TextStyle(color: Color(0xff35C2C1), fontSize: 25),
+            //   ),
+            // )
           ],
         ),
       ),
