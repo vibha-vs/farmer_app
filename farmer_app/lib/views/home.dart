@@ -8,6 +8,7 @@ import '../models/categorie_model.dart';
 //import '../views/categorie_news.dart';
 import '../helper/data.dart';
 import '../helper/news.dart';
+import 'category_news.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -76,21 +77,21 @@ class _HomeState extends State<Home> {
               physics: const ClampingScrollPhysics(),
               child: Column(children: <Widget>[
                 //categories
-                // Container(
-                //   padding: const EdgeInsets.symmetric(horizontal: 16),
-                //   height: 70,
-                //   child: ListView.builder(
-                //       physics: const NeverScrollableScrollPhysics(),
-                //       itemCount: categories.length,
-                //       shrinkWrap: true,
-                //       scrollDirection: Axis.horizontal,
-                //       itemBuilder: (context, index) {
-                //         return CategoryTile(
-                //           imageUrl: categories[index].imageUrl,
-                //           categoryName: categories[index].categoryName,
-                //         );
-                //       }),
-                // ),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  height: 70,
+                  child: ListView.builder(
+                      //physics: const NeverScrollableScrollPhysics(),
+                      itemCount: categories.length,
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return CategoryTile(
+                          imageUrl: categories[index].imageUrl,
+                          categoryName: categories[index].categoryName,
+                        );
+                      }),
+                ),
 
                 //blogs
                 ListView.builder(
@@ -118,9 +119,18 @@ class CategoryTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => CategoryNews(
+              category: categoryName.toString().toLowerCase(),
+            ),
+          ),
+        );
+      },
       child: Container(
-        margin: const EdgeInsets.only(right: 16),
+        margin: const EdgeInsets.only(right: 16, top: 10),
         child: Stack(
           children: <Widget>[
             ClipRRect(
